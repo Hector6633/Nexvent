@@ -8,4 +8,6 @@ urlpatterns = [
     path('events', events, name='events'),
     path('readmore', readmore, name='readmore'),
     path('event-booking-form', event_booking, name='event_booking'),
+    path('sign-up', sign_up, name='sign_up'),
+    path('sign-in', sign_in, name='sign_in'),
 ]

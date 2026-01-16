@@ -18,3 +18,9 @@ def readmore(request):
 
 def event_booking(request):
     return render(request, 'event-booking-form.html')
+
+def sign_up(request):
+    return render(request, 'sign-up.html')
+
+def sign_in(request):
+    return render(request, 'sign-in.html')
