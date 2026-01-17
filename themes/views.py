@@ -24,3 +24,9 @@ def sign_up(request):
 
 def sign_in(request):
     return render(request, 'sign-in.html')
+
+def success(request):
+    return render(request, 'success.html')
+
+def error(request):
+    return render(request, 'error.html')
