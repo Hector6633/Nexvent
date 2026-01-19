@@ -114,30 +114,38 @@
             <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
                 <h6 class="section-title bg-white text-center text-primary px-3">Feedback Us</h6>
                 <h1 class="mb-5">Send your Feedback</h1>
+                {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-success" role="alert">
+                        <h1{% if message.tags %} class="{{ message.tags }}" {% endif %}><strong>{{ message }}<strong><h1>
+                    </div>
+                {% endfor %}
+                {% endif %}
             </div>
-            <form>
+                        <form method="post" action="{% url "feedback" %}" enctype=multipart/form-data>
+                            {% csrf_token %}
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" id="name" placeholder="Your Name">
+                                    <input type="text" name="name" required class="form-control" id="name" placeholder="Your Name">
                                     <label for="name">Your Name</label>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                    <input type="email" class="form-control" id="email" placeholder="Your Email">
+                                    <input type="email" name="email" required class="form-control" id="email" placeholder="Your Email">
                                     <label for="email">Your Email</label>
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" id="subject" placeholder="Subject">
-                                    <label for="subject">Mobile Number</label>
+                                    <input type="text" name="number" required maxlength="10" class="form-control" id="subject" placeholder="Your Mobile Number">
+                                    <label for="subject">Your Mobile Number</label>
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-floating">
-                                    <textarea class="form-control" placeholder="Leave a message here" id="message" style="height: 100px"></textarea>
+                                    <textarea class="form-control" name="message" required placeholder="Leave a message here" id="message" style="height: 100px"></textarea>
                                     <label for="message">Message</label>
                                 </div>
                             </div>
@@ -145,7 +153,7 @@
                                 <button class="btn btn-primary w-100 py-3" type="submit">Send Message</button>
                             </div>
                         </div>
-            </form>
+                        </form>
         </div>
     </div>
     <!-- Contact End -->
@@ -161,7 +169,7 @@
                     <a class="btn btn-link" href="{% url "feedback" %}">Feedback Us</a>
                     <a class="btn btn-link" href="">Privacy Policy</a>
                     <a class="btn btn-link" href="{% url "events" %}">Events</a>
-                    <a class="btn btn-link" href="">Account</a>
+                    <a class="btn btn-link" href="{% url "sign_up" %}">Account</a>
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <h4 class="text-white mb-3">Contact</h4>
@@ -179,28 +187,28 @@
                     <h4 class="text-white mb-3">Gallery</h4>
                     <div class="row g-2 pt-2">
                         <div class="col-4">
-                            <img class="img-fluid bg-light p-1" src="img/package-1.jpg" alt="">
+                            <img class="img-fluid bg-light p-1" src="{% static "img/gallery1.jpg" %}" alt="">
                         </div>
                         <div class="col-4">
-                            <img class="img-fluid bg-light p-1" src="img/package-2.jpg" alt="">
+                            <img class="img-fluid bg-light p-1" src="{% static "img/gallery2.jpg" %}" alt="">
                         </div>
                         <div class="col-4">
-                            <img class="img-fluid bg-light p-1" src="img/package-3.jpg" alt="">
+                            <img class="img-fluid bg-light p-1" src="{% static "img/gallery3.jpg" %}" alt="">
                         </div>
                         <div class="col-4">
-                            <img class="img-fluid bg-light p-1" src="img/package-2.jpg" alt="">
+                            <img class="img-fluid bg-light p-1" src="{% static "img/gallery4.jpg" %}" alt="">
                         </div>
                         <div class="col-4">
-                            <img class="img-fluid bg-light p-1" src="img/package-3.jpg" alt="">
+                            <img class="img-fluid bg-light p-1" src="{% static "img/gallery5.jpg" %}" alt="">
                         </div>
                         <div class="col-4">
-                            <img class="img-fluid bg-light p-1" src="img/package-1.jpg" alt="">
+                            <img class="img-fluid bg-light p-1" src="{% static "img/gallery6.jpg" %}" alt="">
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <h4 class="text-white mb-3">Nexvent</h4>
-                    <p>Dolor amet sit justo amet elitr clita ipsum elitr est.</p>
+                    <p>Relax and enjoy your event — Nexvent handles everything.</p>
                 </div>
             </div>
         </div>

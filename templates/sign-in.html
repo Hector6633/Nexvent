@@ -144,8 +144,8 @@
                     <div class="col-md-6 text-white">
                         <h6 class="text-white text-uppercase">Account</h6>
                         <h1 class="text-white mb-4">Event Account</h1>
-                        <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit.</p>
-                        <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet</p>
+                        <p class="mb-4">Sign in to your Nexvent account to manage your events, track bookings, and access exclusive services.</p>
+                        <p class="mb-4">Sign in to continue planning your perfect event with Nexvent & Access personalized event recommendations.</p>
                     </div>
                 </div>
             </div>
@@ -166,7 +166,7 @@
                     <a class="btn btn-link" href="{% url "feedback" %}">Feedback Us</a>
                     <a class="btn btn-link" href="">Privacy Policy</a>
                     <a class="btn btn-link" href="{% url "events" %}">Events</a>
-                    <a class="btn btn-link" href="">Account</a>
+                    <a class="btn btn-link" href="{% url "sign_up" %}">Account</a>
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <h4 class="text-white mb-3">Contact</h4>
@@ -184,28 +184,28 @@
                     <h4 class="text-white mb-3">Gallery</h4>
                     <div class="row g-2 pt-2">
                         <div class="col-4">
-                            <img class="img-fluid bg-light p-1" src="img/package-1.jpg" alt="">
+                            <img class="img-fluid bg-light p-1" src="{% static "img/gallery1.jpg" %}" alt="">
                         </div>
                         <div class="col-4">
-                            <img class="img-fluid bg-light p-1" src="img/package-2.jpg" alt="">
+                            <img class="img-fluid bg-light p-1" src="{% static "img/gallery2.jpg" %}" alt="">
                         </div>
                         <div class="col-4">
-                            <img class="img-fluid bg-light p-1" src="img/package-3.jpg" alt="">
+                            <img class="img-fluid bg-light p-1" src="{% static "img/gallery3.jpg" %}" alt="">
                         </div>
                         <div class="col-4">
-                            <img class="img-fluid bg-light p-1" src="img/package-2.jpg" alt="">
+                            <img class="img-fluid bg-light p-1" src="{% static "img/gallery4.jpg" %}" alt="">
                         </div>
                         <div class="col-4">
-                            <img class="img-fluid bg-light p-1" src="img/package-3.jpg" alt="">
+                            <img class="img-fluid bg-light p-1" src="{% static "img/gallery5.jpg" %}" alt="">
                         </div>
                         <div class="col-4">
-                            <img class="img-fluid bg-light p-1" src="img/package-1.jpg" alt="">
+                            <img class="img-fluid bg-light p-1" src="{% static "img/gallery6.jpg" %}" alt="">
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <h4 class="text-white mb-3">Nexvent</h4>
-                    <p>Dolor amet sit justo amet elitr clita ipsum elitr est.</p>
+                    <p>Relax and enjoy your event — Nexvent handles everything.</p>
                 </div>
             </div>
         </div>
