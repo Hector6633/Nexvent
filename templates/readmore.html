@@ -99,7 +99,7 @@
             <div class="container py-5">
                 <div class="row justify-content-center py-5">
                     <div class="col-lg-10 pt-lg-5 mt-lg-5 text-center">
-                        <h1 class="display-3 text-white animated slideInDown">Event Name</h1>
+                        <h1 class="display-3 text-white animated slideInDown">{{event_detail.event_name}}</h1>
                     </div>
                 </div>
             </div>
@@ -109,7 +109,7 @@
 
 
     <!-- Team Start -->
-    <div class="container-xxl py-5">
+    {% comment %} <div class="container-xxl py-5">
         <div class="container">
             <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
                 <h1 class="mb-5">Also include this package</h1>
@@ -121,8 +121,8 @@
                             <img class="img-fluid" src="img/team-1.jpg" alt="">
                         </div>
                         <div class="text-center p-4">
-                            <h5 class="mb-0">Full Name</h5>
-                            <small>Designation</small>
+                            <h5 class="mb-0">{{event_detail.package1}}</h5>
+                            <small>{{event_detail.event_type}}</small>
                         </div>
                     </div>
                 </div>
@@ -132,8 +132,8 @@
                             <img class="img-fluid" src="img/team-2.jpg" alt="">
                         </div>
                         <div class="text-center p-4">
-                            <h5 class="mb-0">Full Name</h5>
-                            <small>Designation</small>
+                            <h5 class="mb-0">{{event_detail.package2}}</h5>
+                            <small>{{event_detail.event_type}}</small>
                         </div>
                     </div>
                 </div>
@@ -143,8 +143,8 @@
                             <img class="img-fluid" src="img/team-3.jpg" alt="">
                         </div>
                         <div class="text-center p-4">
-                            <h5 class="mb-0">Full Name</h5>
-                            <small>Designation</small>
+                            <h5 class="mb-0">{{event_detail.package3}}</h5>
+                            <small>{{event_detail.event_type}}</small>
                         </div>
                     </div>
                 </div>
@@ -154,49 +154,53 @@
                             <img class="img-fluid" src="img/team-4.jpg" alt="">
                         </div>
                         <div class="text-center p-4">
-                            <h5 class="mb-0">Full Name</h5>
-                            <small>Designation</small>
+                            <h5 class="mb-0">{{event_detail.package4}}</h5>
+                            <small>{{event_detail.event_type}}</small>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </div> {% endcomment %}
     <!-- Team End -->
 
     <!-- About Start -->
     <div class="container-xxl py-5">
         <div class="container">
             <div class="row g-5">
+                <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s" style="min-height: 400px;">
+                    <div class="position-relative h-100">
+                        <img class="img-fluid position-absolute w-100 h-100" src="{{event_detail.event_img.url}}" alt="" style="object-fit: cover;">
+                    </div>
+                </div>
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.3s">
-                    <h6 class="section-title bg-white text-start text-primary pe-3">Event company name</h6>
-                    <h1 class="mb-4">Packages injh <span class="text-primary">Events</span></h1>
-                    <div class="row gy-2 gx-4 mb-4">
-                        <div class="col-sm-6">
-                            <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>First Class Flights</p>
+                    <h6 class="section-title bg-white text-start text-primary pe-3">{{event_detail.event_name}}</h6>
+                    <h1 class="mb-4">Packages in the <span class="text-primary">Events</span></h1>
+                    <div class="team-item">
+                        <div class="text-center p-4">
+                            <h5 class="mb-0">{{event_detail.package1}}</h5>
+                            <small>{{event_detail.event_type}}</small>
                         </div>
-                        <div class="col-sm-6">
-                            <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>Handpicked Hotels</p>
+                    </div>
+                    <div class="team-item">
+                        <div class="text-center p-4">
+                            <h5 class="mb-0">{{event_detail.package2}}</h5>
+                            <small>{{event_detail.event_type}}</small>
                         </div>
-                        <div class="col-sm-6">
-                            <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>5 Star Accommodations</p>
+                    </div>
+                    <div class="team-item">
+                        <div class="text-center p-4">
+                            <h5 class="mb-0">{{event_detail.package3}}</h5>
+                            <small>{{event_detail.event_type}}</small>
                         </div>
-                        <div class="col-sm-6">
-                            <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>Latest Model Vehicles</p>
-                        </div>
-                        <div class="col-sm-6">
-                            <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>150 Premium City Tours</p>
-                        </div>
-                        <div class="col-sm-6">
-                            <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>24/7 Service</p>
+                    </div>
+                    <div class="team-item">
+                        <div class="text-center p-4">
+                            <h5 class="mb-0">{{event_detail.package4}}</h5>
+                            <small>{{event_detail.event_type}}</small>
                         </div>
                     </div>
                     <a class="btn btn-primary py-3 px-5 mt-2" href="{% url "event_booking" %}">Book Now</a>
-                </div>
-                <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s" style="min-height: 400px;">
-                    <div class="position-relative h-100">
-                        <img class="img-fluid position-absolute w-100 h-100" src="img/about.jpg" alt="" style="object-fit: cover;">
-                    </div>
                 </div>
             </div>
         </div>

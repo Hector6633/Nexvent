@@ -26,15 +26,6 @@ def feedback(request):
             return redirect('feedback')
     return render(request, 'feedback.html')
 
-def events(request):
-    return render(request, 'events.html')
-
-def readmore(request):
-    return render(request, 'readmore.html')
-
-def event_booking(request):
-    return render(request, 'event-booking-form.html')
-
 def sign_up(request):
     return render(request, 'sign-up.html')
 
