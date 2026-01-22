@@ -164,7 +164,7 @@
     </div> {% endcomment %}
     <!-- Team End -->
 
-    <!-- About Start -->
+    <!-- Event Readmore Start -->
     <div class="container-xxl py-5">
         <div class="container">
             <div class="row g-5">
@@ -200,12 +200,12 @@
                             <small>{{event_detail.event_type}}</small>
                         </div>
                     </div>
-                    <a class="btn btn-primary py-3 px-5 mt-2" href="{% url "event_booking" %}">Book Now</a>
+                    <a class="btn btn-primary py-3 px-5 mt-2" href="{% url "selected_event" event_detail.id %}">Book Now</a>
                 </div>
             </div>
         </div>
     </div>
-    <!-- About End -->
+    <!-- Event Readmore End -->
 
         
 

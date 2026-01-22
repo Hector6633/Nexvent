@@ -108,49 +108,62 @@
     <!-- Navbar & Hero End -->
 
 
-    <!-- Contact Start -->
+    <!-- Event Booking Start -->
     <div class="container-xxl py-5">
         <div class="container">
             <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
                 <h6 class="section-title bg-white text-center text-primary px-3">Event Booking</h6>
             </div>
             <div class="row g-4">
-                    <form>
+                    <form method="post" action="{% url "event_booking" %}" enctype="multipart/form-data">
+                        {% csrf_token %}
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" id="name" placeholder="Your Name">
+                                    <input type="text" name="name" class="form-control" id="name" placeholder="Your Name">
                                     <label for="name">Your Name</label>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                    <input type="email" class="form-control" id="email" placeholder="Your Email">
+                                    <input type="email" name="email" class="form-control" id="email" placeholder="Your Email">
                                     <label for="email">Your Email</label>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" id="subject" placeholder="Subject">
-                                    <label for="subject">Subject</label>
+                                    <input type="text" maxlength="10" name="number" class="form-control" id="email" placeholder="Your Email">
+                                    <label for="email">Your Mobile Number</label>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" id="name" placeholder="Your Name">
-                                    <label for="name">Your Name</label>
+                                    <input type="text" readonly name="event_company_name" value="{{event.event_name}}" class="form-control" id="subject" placeholder="{{event.event_name}}">
+                                    <label for="subject">Event Company Name</label>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" id="name" placeholder="Your Name">
-                                    <label for="name">Your Name</label>
+                                    <input type="text" readonly name="event_type" value="{{event.event_type}}" class="form-control" id="subject" placeholder="{{event.event_type}}">
+                                    <label for="subject">Event Type</label>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" id="name" placeholder="Your Name">
-                                    <label for="name">Your Name</label>
+                                    <input type="number" readonly name="event_price" value="{{event.event_price}}" class="form-control" id="name" placeholder="{{event.event_price}}">
+                                    <label for="name">Event Price</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="date" name="date" class="form-control" id="name" placeholder="Your Name">
+                                    <label for="name">Booking Date</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="text" name="event_location" class="form-control" id="name" placeholder="Your Name">
+                                    <label for="name">Event Location</label>
                                 </div>
                             </div>
                             <div class="col-12">
@@ -161,7 +174,7 @@
             </div>
         </div>
     </div>
-    <!-- Contact End -->
+    <!-- Event Booking End -->
 
 
     <!-- Footer Start -->

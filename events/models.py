@@ -16,3 +16,17 @@ class Event_Company(models.Model):
     
     def __str__(self):
         return self.event_name
+    
+class Event_Booking(models.Model):
+    name = models.CharField(max_length=30)
+    email = models.EmailField()
+    number = models.CharField(max_length=10)
+    event_company_name = models.CharField(max_length=30)
+    event_type = models.CharField(max_length=30)
+    event_price = models.BigIntegerField()
+    event_booking_date = models.CharField(max_length=10)
+    event_location = models.CharField(max_length=10)
+    
+    def __str__(self):
+        return self.name
+    
