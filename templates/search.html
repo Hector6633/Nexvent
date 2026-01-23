@@ -119,8 +119,15 @@
         <div class="container">
             <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
                 <h6 class="section-title bg-white text-center text-primary px-3">Packages</h6>
-                <h1 class="mb-5">Our Awesome Event Packages</h1>
+                <h1 class="mb-5">Filtered Event Packages</h1>
             </div>
+            {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-error" role="alert">
+                <h2{% if message.tags %} class="{{ message.tags }} section-title position-relative text-uppercase mx-xl-5 mb-4" {% endif %}><span class="bg-primary pr-3">{{ message }}</span></h2>
+            </div>
+            {% endfor %}
+            {% endif %}
             <div class="row g-4 justify-content-center">
                 {% for event in events %}
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">

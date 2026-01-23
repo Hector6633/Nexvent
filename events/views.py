@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
 from . models import *
+from django.db.models import Q
+from django.contrib import messages
 # Create your views here.
 
 def events(request):
@@ -39,3 +41,14 @@ def event_booking(request):
         except Exception as e:
             return redirect('error')
     return render(request, 'event-booking-form.html')
+
+def searching_events(request):
+    if request.method == 'POST':
+        search_query = request.POST['search_query']
+        if search_query != None:
+            search_result = Event_Company.objects.filter(Q(event_name__icontains=search_query)|Q(event_type__icontains=search_query)|Q(event_price__icontains=search_query)|Q(location__icontains=search_query))
+            return render(request, 'search.html', {'events': search_result})
+        else:
+            error_msg = 'Event not Found'
+            messages.error(request, error_msg)
+            return render(request, 'search.html')
