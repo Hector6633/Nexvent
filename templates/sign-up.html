@@ -121,30 +121,38 @@
                 <div class="row g-5 align-items-center">
                     <div class="col-md-6">
                         <h1 class="text-white mb-4">Sign Up Here</h1>
-                        <form>
+                        {% if messages %}
+                        {% for message in messages %}
+                        <div class="alert alert-success" role="alert">
+                            <h2{% if message.tags %} class="{{ message.tags }} section-title position-relative text-uppercase mx-xl-5 mb-4" {% endif %}><span class="bg-primary pr-3">{{ message }}</span></h2>
+                        </div>
+                        {% endfor %}
+                        {% endif %}
+                        <form method="post" action="{% url "sign_up" %}" enctype="multipart/form-data">
+                            {% csrf_token %}
                             <div class="row g-3">
                                 <div class="col-md-6">
                                     <div class="form-floating">
-                                        <input type="text" class="form-control" id="name" placeholder="Your Name">
-                                        <label for="name">Your Name</label>
+                                        <input type="text" name="username" required class="form-control" id="name" placeholder="Enter Your Username">
+                                        <label for="name">Enter your Username</label>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-floating">
-                                        <input type="email" class="form-control" id="email" placeholder="Your Email">
-                                        <label for="email">Your Email</label>
+                                        <input type="email" name="email" required class="form-control" id="email" placeholder="Enter Your Email">
+                                        <label for="email">Enter your Email</label>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-floating">
-                                        <input type="email" class="form-control" id="email" placeholder="Your Email">
-                                        <label for="email">Your Password</label>
+                                        <input type="password" name="password" minlength="8" required class="form-control" id="email" placeholder="Your Password">
+                                        <label for="email">Enter your Password</label>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-floating">
-                                        <input type="email" class="form-control" id="email" placeholder="Your Email">
-                                        <label for="email">Confirm Password</label>
+                                        <input type="password" name="password" minlength="8" required class="form-control" id="email" placeholder="Confirm Password">
+                                        <label for="email">Confirm your Password</label>
                                     </div>
                                 </div>
                                 <div class="col-12">

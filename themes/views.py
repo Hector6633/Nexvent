@@ -26,12 +26,6 @@ def feedback(request):
             return redirect('feedback')
     return render(request, 'feedback.html')
 
-def sign_up(request):
-    return render(request, 'sign-up.html')
-
-def sign_in(request):
-    return render(request, 'sign-in.html')
-
 def success(request):
     return render(request, 'success.html')
 

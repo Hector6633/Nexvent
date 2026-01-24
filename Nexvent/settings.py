@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'livereload',
     'themes',
     'events',
+    'account_manager',
 ]
 
 MIDDLEWARE = [
