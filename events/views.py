@@ -2,8 +2,10 @@ from django.shortcuts import render, redirect
 from . models import *
 from django.db.models import Q
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
+@login_required(login_url='sign_in')
 def events(request):
     events = {
         'events': Event_Company.objects.all()
@@ -22,6 +24,7 @@ def selected_event(request, pk):
     }
     return render(request, 'event-booking-form.html', event)
 
+@login_required(login_url='sign_in')
 def event_booking(request):
     if request.method == 'POST':
         try:
