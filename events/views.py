@@ -3,6 +3,8 @@ from . models import *
 from django.db.models import Q
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.conf import settings
+from django.core.mail import send_mail
 # Create your views here.
 
 @login_required(login_url='sign_in')
@@ -40,6 +42,16 @@ def event_booking(request):
                                                         event_type=event_type, event_price=event_price, event_location=event_location,
                                                         event_booking_date=event_booking_date)
             booking_data.save()
+            subject = "Nexvent Event"
+            message = f"Dear {name},\nYou are successfully booked our event Service with Nexvent. We will get back to you soon.\nHere are your booking details:\n\tName: {name}\n\tMobile Number:{number}\n\tEvent Company Name: {event_company_name}\n\tEvent Type: {event_type}\n\tEvent Price: {event_price}\n\tEvent Location: {event_location}\n\tEvent Booked Date: {event_booking_date}\nPlease keep this email for your records and do not forward or share any other person.\nTo get started, please visit our website at https://www.nexvent.pythonanywhere.com/ and use our services.\nFor more details login with Nexvent.\n\nBest Regards,\nNexvent Team."
+            recipient = email
+            send_mail(
+                subject,
+                message,
+                settings.EMAIL_HOST_USER,
+                [recipient],
+                fail_silently=True,
+            )
             return redirect('success')
         except Exception as e:
             return redirect('error')

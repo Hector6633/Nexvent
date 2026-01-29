@@ -4,7 +4,9 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from . decorators import unauthenticated_user
 from django.contrib import messages
-# Create your views here.
+from django.conf import settings
+from django.core.mail import send_mail
+
 @unauthenticated_user
 def sign_up(request):
     if request.method == 'POST':
@@ -14,6 +16,16 @@ def sign_up(request):
             password = request.POST['password']
             user_data = User.objects.create_user(username=username, email=email, password=password)
             user_data.save()
+            subject = "Nexvent Account"
+            message = f"Dear {username},\nYou are successfully created your account with Nexvent.\nPlease keep this email for your records and do not forward or share any other person.\nTo get started, please visit our website at https://www.nexvent.pythonanywhere.com/ and use our services.\nFor more details login with Nexvent.\n\nBest Regards,\nNexvent Team."
+            recipient = email
+            send_mail(
+                subject,
+                message,
+                settings.EMAIL_HOST_USER,
+                [recipient],
+                fail_silently=True,
+            )
             success_msg = 'Account Created'
             messages.success(request, success_msg)
             return redirect('sign_in')

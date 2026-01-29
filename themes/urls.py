@@ -7,4 +7,5 @@ urlpatterns = [
     path('feedback', feedback, name='feedback'),
     path('success', success, name='success'),
     path('error', error, name='error'),
+    path('privacy-policy', privacy_policy, name='privacy_policy'),
 ]
