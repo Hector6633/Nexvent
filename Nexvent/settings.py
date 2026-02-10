@@ -54,6 +54,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django_session_timeout.middleware.SessionTimeoutMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -144,6 +145,12 @@ SERVER_EMAIL = env('SERVER_EMAIL')
 EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
 # only for local development
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# Session timeout configuration
+SESSION_EXPIRE_SECONDS = 1800  # Expire after 30 minutes
+SESSION_EXPIRE_AFTER_LAST_ACTIVITY = True
+SESSION_TIMEOUT_REDIRECT = 'sign_in/' # Add your URL
+SESSION_EXPIRE_AT_BROWSER_CLOSE=True # Invalid session after browser is closed
 
 # For production settings
 # HTTPS SETTINGS
