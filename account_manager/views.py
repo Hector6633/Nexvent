@@ -45,7 +45,7 @@ def sign_in(request):
             login(request, user_auth)
             return redirect('index')
         else:
-            error_msg = 'Invalid User'
+            error_msg = 'Invalid Username or Password'
             messages.error(request, error_msg)
             return redirect('sign_in')
     return render(request, 'sign-in.html')

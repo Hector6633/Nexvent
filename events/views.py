@@ -20,6 +20,7 @@ def readmore(request, pk):
     }
     return render(request, 'readmore.html', event_details)
 
+@login_required(login_url='sign_in')
 def selected_event(request, pk):
     event = {
         'event':Event_Company.objects.get(pk=pk)
