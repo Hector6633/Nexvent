@@ -7,6 +7,7 @@ class Event_Company(models.Model):
     event_type = models.CharField(max_length=30)
     event_price = models.BigIntegerField()
     event_description = models.TextField()
+    event_mobile_number = models.CharField(max_length=10)
     package1 = models.CharField(max_length=30)
     package2 = models.CharField(max_length=30)
     package3 = models.CharField(max_length=30)
@@ -25,7 +26,8 @@ class Event_Booking(models.Model):
     event_type = models.CharField(max_length=30)
     event_price = models.BigIntegerField()
     event_booking_date = models.CharField(max_length=10)
-    event_location = models.CharField(max_length=10)
+    event_location = models.CharField(max_length=30)
+    event_mobile_number = models.CharField(max_length=10)
     
     def __str__(self):
         return self.name
