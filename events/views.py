@@ -40,21 +40,33 @@ def event_booking(request):
             event_location = request.POST['event_location']
             event_mobile_number = request.POST['event_mobile_number']
             event_booking_date = request.POST['date']
-            booking_data = Event_Booking.objects.create(name=name, email=email, number=number, event_company_name=event_company_name,
-                                                        event_type=event_type, event_price=event_price, event_location=event_location, event_mobile_number=event_mobile_number,
-                                                        event_booking_date=event_booking_date)
-            booking_data.save()
-            subject = "Nexvent Event"
-            message = f"Dear {name},\nYou are successfully booked our event Service with Nexvent. We will get back to you soon.\nHere are your booking details:\n\tName: {name}\n\tMobile Number:{number}\n\tEvent Company Name: {event_company_name}\n\tEvent Type: {event_type}\n\tEvent Price: {event_price}\n\tEvent Location: {event_location}\n\tEvent Booked Date: {event_booking_date}\n\tContact Number: {event_mobile_number}\nPlease keep this email for your records and do not forward or share any other person.\nTo get started, please visit our website at https://www.nexvent.pythonanywhere.com/ and use our services.\nFor more details login with Nexvent.\n\nBest Regards,\nNexvent Team."
-            recipient = email
-            send_mail(
-                subject,
-                message,
-                settings.EMAIL_HOST_USER,
-                [recipient],
-                fail_silently=True,
-            )
-            return redirect('success')
+            
+            #  Check for conflict
+            conflict = Event_Booking.objects.filter(
+                event_booking_date=event_booking_date,
+                 event_type=event_type 
+            ).exists()
+            
+            if conflict:
+                error_msg = 'Event is already Booked on this date please book another date'
+                messages.error(request, error_msg)
+                return redirect('event_booking')
+            else:
+                booking_data = Event_Booking.objects.create(name=name, email=email, number=number, event_company_name=event_company_name,
+                                                            event_type=event_type, event_price=event_price, event_location=event_location, event_mobile_number=event_mobile_number,
+                                                            event_booking_date=event_booking_date)
+                booking_data.save()
+                subject = "Nexvent Event"
+                message = f"Dear {name},\nYou are successfully booked our event Service with Nexvent. We will get back to you soon.\nHere are your booking details:\n\tName: {name}\n\tMobile Number:{number}\n\tEvent Company Name: {event_company_name}\n\tEvent Type: {event_type}\n\tEvent Price: {event_price}\n\tEvent Location: {event_location}\n\tEvent Booked Date: {event_booking_date}\n\tContact Number: {event_mobile_number}\nPlease keep this email for your records and do not forward or share any other person.\nTo get started, please visit our website at https://www.nexvent.pythonanywhere.com/ and use our services.\nFor more details login with Nexvent.\n\nBest Regards,\nNexvent Team."
+                recipient = email
+                send_mail(
+                    subject,
+                    message,
+                    settings.EMAIL_HOST_USER,
+                    [recipient],
+                    fail_silently=True,
+                )
+                return redirect('success')
         except Exception as e:
             return redirect('error')
     return render(request, 'event-booking-form.html')
