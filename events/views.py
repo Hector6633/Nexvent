@@ -5,6 +5,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
 from django.core.mail import send_mail
+from datetime import datetime, date
 # Create your views here.
 
 @login_required(login_url='sign_in')
@@ -29,6 +30,7 @@ def selected_event(request, pk):
 
 @login_required(login_url='sign_in')
 def event_booking(request):
+    today_date = date.today().isoformat()
     if request.method == 'POST':
         try:
             name = request.POST['name']
@@ -40,6 +42,10 @@ def event_booking(request):
             event_location = request.POST['event_location']
             event_mobile_number = request.POST['event_mobile_number']
             event_booking_date = request.POST['date']
+            selected_date = datetime.strptime(event_booking_date, "%Y-%m-%d").date()
+            if selected_date < datetime.today().date():
+                messages.error(request, "You cannot book a past date.")
+                return redirect('event_booking')
             
             #  Check for conflict
             conflict = Event_Booking.objects.filter(
@@ -69,7 +75,7 @@ def event_booking(request):
                 return redirect('success')
         except Exception as e:
             return redirect('error')
-    return render(request, 'event-booking-form.html')
+    return render(request, 'event-booking-form.html', {'today_date': today_date})
 
 def searching_events(request):
     if request.method == 'POST':
